@@ -9,9 +9,8 @@ import { pauseImg, playImg, replayImg } from "../utils";
 
 const VideoCorousel = () => {
   const videoRef = useRef([]); // video
-  const videoDivRef = useRef([]); // progress bar ka div 
-  const videoSpanRef = useRef([]); // ye vo vala nested progress baar h jo white hoga 
-
+  const videoDivRef = useRef([]); // progress bar ka div
+  const videoSpanRef = useRef([]); // ye vo vala nested progress baar h jo white hoga
 
   // ye video ke saare options h jitne hosakte h inhi ke basis pe video chalegi
   const [video, setvideo] = useState({
@@ -23,17 +22,16 @@ const VideoCorousel = () => {
   });
 
   const [loadedData, setLoadedData] = useState([]); // ye video ke data load hota h toh uska duration store karne ke liye
-  const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video; // yaha pe hum har value ko alag kar rahe h 
+  const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video; // yaha pe hum har value ko alag kar rahe h
 
   // ye gsap ka hook h ye saare animation control karega
   useGSAP(() => {
-
     // ye videos ki postion ko left right karega on the basis of videoId
-    gsap.to('#slider',{
-      transform:`translateX(${-100 * videoId}%)`,
-      ease:'power2.inOut',
-      duration:2
-    })
+    gsap.to("#slider", {
+      transform: `translateX(${-100 * videoId}%)`,
+      ease: "power2.inOut",
+      duration: 2,
+    });
 
     // ye video ko scroll karne pe play karega
     gsap.to("#video", {
@@ -51,11 +49,12 @@ const VideoCorousel = () => {
         }));
       },
     });
-  }, [isEnd, videoId]); 
+  }, [isEnd, videoId]);
 
   // ye video ko play pause karega
   useEffect(() => {
-    if (loadedData.length > 3) { // ye check karega ki video load hua h ya nahi
+    if (loadedData.length > 3) {
+      // ye check karega ki video load hua h ya nahi
       if (!isPlaying) {
         videoRef.current[videoId].pause();
       } else {
@@ -69,19 +68,21 @@ const VideoCorousel = () => {
     let currentProgress = 0; // ye video ka progress h
     let span = videoSpanRef.current; // ye video ke progress bar ka span h
 
-    if (span[videoId]) { // ye check karega ki video ka span h ya nahi
+    if (span[videoId]) {
+      // ye check karega ki video ka span h ya nahi
       // animate the progress of the video
 
       let anim = gsap.to(span[videoId], {
-        onUpdate: () => { 
-          const progress = Math.ceil(anim.progress() * 100); 
+        onUpdate: () => {
+          const progress = Math.ceil(anim.progress() * 100);
 
           if (progress != currentProgress) {
             currentProgress = progress;
 
-            gsap.to(videoDivRef.current[videoId], { // ye video ke progress bar ka div h
+            gsap.to(videoDivRef.current[videoId], {
+              // ye video ke progress bar ka div h
               width:
-                window.innerWidth < 760 
+                window.innerWidth < 760
                   ? "10vw" // mobile
                   : window.innerWidth < 1200
                   ? "10vw" // tablet
@@ -110,31 +111,31 @@ const VideoCorousel = () => {
       });
 
       // hum video id ko check karenge ki video id 0 h ya nahi agar h toh video ko restart karenge
-      if(videoId === 0){
+      if (videoId === 0) {
         anim.restart();
       }
 
-      // ye progress ko set kar raha h 
+      // ye progress ko set kar raha h
       const animUpdate = () => {
-        anim.progress(videoRef.current[videoId].currentTime / highlightsSlides[videoId].videoDuration);
-      }
+        anim.progress(
+          videoRef.current[videoId].currentTime /
+            highlightsSlides[videoId].videoDuration
+        );
+      };
 
       // ye har ek clock pe chalegi or animupdate ko call karegi jo fir progress ko update karega
-      if(isPlaying){
+      if (isPlaying) {
         gsap.ticker.add(animUpdate);
-      }
-      else{
+      } else {
         gsap.ticker.remove(animUpdate);
       }
     }
-
-
-  }, [videoId, startPlay]); 
+  }, [videoId, startPlay]);
 
   // ye video ke process ko handle karega
   const handleProcess = (type, i) => {
     switch (type) {
-      case "video-end": // video end hoga to 
+      case "video-end": // video end hoga to
         setvideo((prev) => ({ ...prev, isEnd: true, videoId: i + 1 })); // video end hoga or next video play hoga
         break;
       case "video-last": // last video h toh
@@ -144,24 +145,24 @@ const VideoCorousel = () => {
         setvideo((prev) => ({ ...prev, isLastVideo: false, videoId: 0 })); // video reset hoga or video id 0 hoga
         break;
       case "play": // video play hoga toh
-        setvideo((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));  // video play hoga
+        setvideo((prev) => ({ ...prev, isPlaying: !prev.isPlaying })); // video play hoga
         break;
       case "pause":
         setvideo((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
         break;
 
       default:
-        return video; 
+        return video;
     }
   };
 
-
-  const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e]); 
+  const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e]);
 
   return (
     <>
       <div className="flex items-center">
-        {highlightsSlides.map((list, i) => ( // ye saari video ko map kar raha h 
+        {/* ye saari video ko map kar raha h */}
+        {highlightsSlides.map((list, i) => (
           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
             <div className="video-carousel_container ">
               <div className="w-full h-full overflow-hidden flex-center rounded-3xl bg-black">
@@ -170,16 +171,18 @@ const VideoCorousel = () => {
                   playsInline={true} // ye video ko usi div me play karega
                   preload="auto" // ye video ko preload karega on the basis of internet speed and web browser
                   muted // ye video ko mute karega
-                  className={`${list.id === 2 && 'translate-x-44' } 
+                  className={`${list.id === 2 && "translate-x-44"} 
                   pointers-events-none`} // ye humne special second video ke liye diya h jisme video ko right side me translate karega
                   ref={(el) => (videoRef.current[i] = el)} // ye video ko ref me store karega
-                  onEnded={() => 
-                    i !== 3 ? handleProcess("video-end", i) : handleProcess("video-last")
+                  onEnded={() =>
+                    i !== 3
+                      ? handleProcess("video-end", i)
+                      : handleProcess("video-last")
                   } // end hone pe check karta rahega ki video last to nahi thi agar nahi thi to next video play karega
                   onPlay={() => {
                     setvideo((prevVideo) => ({
                       ...prevVideo,
-                      isPlaying: true
+                      isPlaying: true,
                     }));
                   }} // video play hote hi isPlaying true ho jayega
                   onLoadedMetadata={(e) => handleLoadedMetaData(i, e)} // ye video ke metadata ko load karega
@@ -188,9 +191,9 @@ const VideoCorousel = () => {
                 </video>
               </div>
 
-              // ye saara absolute text h jo video ke upar show hoga
-              <div className="absolute top-12 left-[5%] z-10"> 
-                {list.textLists.map((text) => ( // because saare text humare array me h
+              {/* ye saara absolute text h jo video ke upar show hoga */}
+              <div className="absolute top-12 left-[5%] z-10">
+                {list.textLists.map((text) => (
                   <p key={text} className="md:text-2xl text-xl font-medium">
                     {text}
                   </p>
@@ -201,16 +204,16 @@ const VideoCorousel = () => {
         ))}
       </div>
 
-      // ye saara progress bar h jo video ke neeche show hoga
+      {/* ye saara progress bar h jo video ke neeche show hoga */}
       <div className="relative flex-center mt-10">
         <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
-          {videoRef.current.map((_, i) => ( // ye saare progress bar ko map kar raha h
-            <span // ye saara progress bar ka span h
+          {videoRef.current.map((_, i) => (
+            <span
               key={i}
               className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
               ref={(el) => (videoDivRef.current[i] = el)}
             >
-              <span // ye saara progress bar ka span h jo white hoga
+              <span
                 className="absolute h-full w-full rounded-full"
                 ref={(el) => (videoSpanRef.current[i] = el)}
               />
@@ -218,20 +221,21 @@ const VideoCorousel = () => {
           ))}
         </div>
 
-        // ye saara control button h jo video ke neeche show hoga
+        {/* ye saara control button h jo video ke neeche show hoga */}
 
-        <button className="control-btn"
-        onClick={
-          isLastVideo
-            ? () => handleProcess("video-reset")
-            : !isPlaying
-            ? () => handleProcess("play")
-            : () => handleProcess("pause")
-        }>
+        <button
+          className="control-btn"
+          onClick={
+            isLastVideo
+              ? () => handleProcess("video-reset")
+              : !isPlaying
+              ? () => handleProcess("play")
+              : () => handleProcess("pause")
+          }
+        >
           <img
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
-            
           />
         </button>
       </div>
