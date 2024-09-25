@@ -1,15 +1,20 @@
 <div align="center">
   <br />
-    <a href="https://youtu.be/B91wc5dCEBA" target="_blank">
-      <img src="https://i.ibb.co/Kqdv8j1/Image-from.png" alt="Project Banner">
-    </a>
+    <img src="banner apple.png" alt="Project Banner">
   <br />
 
   <div>
+    <img src="https://img.shields.io/badge/-Three_JS-black?style=for-the-badge&logoColor=white&logo=three.js&color=000000" alt="three.js" />
     <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logoColor=white&logo=vite&color=646CFF" alt="vite" />
+    <img src="https://img.shields.io/badge/-JavaScript-black?style=for-the-badge&logoColor=white&logo=javascript&color=F7DF1E" alt="javascript" />
+    <img src="https://img.shields.io/badge/-GSAP-black?style=for-the-badge&logoColor=white&logo=greensock&color=88CE02" alt="gsap" />
     <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
     <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+    <img src="https://img.shields.io/badge/-HTML5-black?style=for-the-badge&logoColor=white&logo=html5&color=E34F26" alt="html5" />
+    <img src="https://img.shields.io/badge/-CSS3-black?style=for-the-badge&logoColor=white&logo=css3&color=1572B6" alt="css3" />
   </div>
+
+
 
   <h3 align="center">Modern UI/UX website</h3>
 
@@ -27,41 +32,44 @@
 
 ## <a name="introduction">🤖 Introduction</a>
 
-Brainwave - Modern UI/UX website, developed using React.js and Tailwind CSS, exemplifies modern UI/UX principles. Its sleek design, seamless animations, and overall user experience set a high standard, serving as a reference or inspiration for future modern applications or websites in general.
-
+Welcome to A99le iPhone — a dynamic and visually engaging platform where you can explore the latest iPhone trends! Our website utilizes GSAP animations to deliver a smooth and captivating browsing experience. Additionally, we feature a unique section showcasing 3D models of iPhones, offering an immersive way to explore Apple's iconic smartphones.
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - Vite
 - React.js
 - Tailwind CSS
+- Three js
+- Gsap
 
-## <a name="features">🔋 Features</a>
+## 🔋 Features
 
-👉 **Beautiful Sections**: Includes hero, services, features, how to use, roadmap, pricing, footer, and header.
+👉 **Latest UI Trends**: Incorporates modern design elements such as bento grids for a fresh and clean user interface.
 
-👉 **Parallax Animations**: Engaging effects triggered by mouse movement and scrolling
+👉 **Cool Gradients**: Enhances visuals with stylish gradients using Tailwind CSS for cards, buttons, and various other UI components.
 
-👉 **Complex UI Geometry**: Utilizes tailwindcss for intricate shapes like circular feature displays, grid lines, and side lines.
+👉 **Responsive Design**: Ensures seamless functionality and aesthetics across all devices, from desktops to smartphones.
 
-👉 **Latest UI Trends**: Incorporates modern design elements such as bento grids.
+👉 **Smooth Animations**: Leverages GSAP for smooth and engaging animations throughout the site.
 
-👉 **Cool Gradients**: Enhances visuals with stylish gradients using Tailwind CSS for cards, buttons, etc.
+👉 **3D iPhone Models**: Features an interactive section with 3D models of iPhones for a more immersive experience.
 
-👉 **Responsive**: Ensures seamless functionality and aesthetics across all devices
+👉 **Code Architecture and Reusability**: Built with a focus on clean, reusable, and maintainable code, ensuring long-term scalability.
 
-and many more, including code architecture and reusability
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
 Follow these steps to set up the project locally on your machine.
 
-**Prerequisites**
+## **Prerequisites**
 
 Make sure you have the following installed on your machine:
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en)
 - [npm](https://www.npmjs.com/) (Node Package Manager)
+- [Three.js](https://threejs.org/) (for 3D modeling)
+- [GSAP](https://greensock.com/gsap/) (for animations)
+
 
 **Cloning the Repository**
 
