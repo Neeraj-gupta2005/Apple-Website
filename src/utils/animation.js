@@ -1,24 +1,28 @@
 import gsap from "gsap";
 
 
-export const animateWithGsapTimeline = ({timeLine,rotationRef,rotationState , firstTarget , secondTarget , animationProps}) => {
-    timeLine.to(rotationRef.current.rotation,{
-        y: rotationState,
-        duration: 1,
-        ease: 'power2.inOut'
+export const animateWithGsapTimeline = (timeline, rotationRef, rotationState, firstTarget, secondTarget, animationProps) => {
+    timeline.to(rotationRef.current.rotation, {
+      y: rotationState,
+      duration: 1,
+      ease: 'power2.inOut'
     })
-
-    timeLine.to(firstTarget,{
+  
+    timeline.to(
+      firstTarget,
+      {
         ...animationProps,
         ease: 'power2.inOut'
-    },
-    '<'
+      },
+      '<'
     )
-    
-    timeLine.to(secondTarget,{
+  
+    timeline.to(
+      secondTarget,
+      {
         ...animationProps,
         ease: 'power2.inOut'
-    },
-    '<'
+      },
+      '<'
     )
-}
+  }
